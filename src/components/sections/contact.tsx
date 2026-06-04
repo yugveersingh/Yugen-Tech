@@ -1,5 +1,5 @@
 "use client";
-
+import { supabase} from "@/lib/supabase";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -75,31 +75,20 @@ export function Contact() {
     setStatus("submitting");
 
     try {
-      if (siteConfig.formspreeId) {
-        const res = await fetch(
-          `https://formspree.io/f/${siteConfig.formspreeId}`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-            body: JSON.stringify({
-              name: form.name,
-              email: form.email,
-              phone: form.phone,
-              projectType: form.projectType,
-              budget: form.budget,
-              message: form.message,
-              _subject: `New project enquiry from ${form.name}`,
-            }),
-          }
-        );
-        if (!res.ok) throw new Error("Submission failed");
-      } else {
-        // Demo fallback when Formspree isn't configured yet.
-        await new Promise((r) => setTimeout(r, 800));
-      }
+     const { error } = await supabase
+  .from("leads")
+  .insert([
+    {
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      project_type: form.projectType,
+      budget: form.budget,
+      message: form.message,
+    },
+  ]);
+
+if (error) throw error;
       setStatus("success");
     } catch {
       setStatus("error");
