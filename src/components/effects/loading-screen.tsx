@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -56,9 +56,13 @@ export function LoadingScreen() {
             {/* Logo mark */}
             <div className="relative">
               <div className="absolute -inset-6 animate-pulse-glow rounded-full bg-electric-500/30 blur-2xl" />
-              <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-gradient text-2xl font-black text-white shadow-glow">
-                Y
-              </div>
+            <Image
+              src="/images/logo.jpeg"
+              alt="Yugen-Tech Logo"
+             width={64}
+             height={64}
+              className="rounded-2xl shadow-glow object-cover"
+              />
             </div>
 
             <div className="flex flex-col items-center gap-3">

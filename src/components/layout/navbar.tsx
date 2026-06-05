@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
@@ -48,9 +48,13 @@ export function Navbar() {
       >
         {/* Brand */}
         <Link href="/" className="flex items-center gap-2.5" aria-label="Yugen-Tech home">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-gradient text-base font-black text-white shadow-glow">
-            Y
-          </span>
+          <Image
+         src="/images/logo.jpeg"
+         alt="Yugen-Tech Logo"
+         width={36}
+         height={36}
+         className="rounded-xl object-cover"
+ />
           <span className="text-base font-semibold tracking-tight">
             Yugen<span className="text-gradient">-Tech</span>
           </span>
