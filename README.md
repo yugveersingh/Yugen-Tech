@@ -1,194 +1,80 @@
-# Yugen-Tech — Software Development Agency Website
+# Dronzer AI — Website & Workspace Preview
 
-The official website for **Yugen-Tech**, a software development agency founded by **Yugveer Singh** (India). We build modern websites, custom software, mobile apps, AI automation and SaaS products for startups and businesses worldwide.
+Dronzer AI is a personal, research-first trading intelligence project for **NIFTY 50 index options (CE & PE)**, with NIFTY BANK used as market context only. It is designed as decision support: data, quantitative research and risk checks feed a human who reviews and places every trade manually.
 
-Premium dark, futuristic, glassmorphic design — built to win real clients.
+This repository contains the **public website** and a **frontend-only preview** of the future workspace. It does not contain the trading backend.
 
-![Stack](https://img.shields.io/badge/Next.js-15-black) ![TS](https://img.shields.io/badge/TypeScript-5-blue) ![Tailwind](https://img.shields.io/badge/TailwindCSS-3.4-38bdf8) ![Framer](https://img.shields.io/badge/Framer_Motion-11-purple)
+> **Live trading is not enabled.** This site has no broker connection, no market data feed, no signal engine and no order controls.
 
----
+## Current status
 
-## ✨ Highlights
+| Area | Status |
+| --- | --- |
+| Website (this repo) | Live |
+| Cloud VM, static IPv4, base packages | Complete |
+| Application environment on the server | In progress |
+| Market data pipeline, research store, model evaluation, risk checks | Planned |
+| Broker API | Not connected |
+| Live trading / order execution | Disabled |
 
-- **Multi-page site**: Home, About, Services, Portfolio, Contact, Privacy Policy, Terms
-- **Real, honest content** — no fake clients, fake testimonials or inflated stats
-- **India 🇮🇳 / Global 🌍 pricing toggle** with automatic currency detection (INR for Indian visitors, USD for international)
-- **Lead-generation focused**: lead-capture form (Formspree), floating WhatsApp button on every page, email + click-to-call, WhatsApp consultation booking
-- **Sample/concept projects** clearly labelled "Sample Project"
-- **Founder section** introducing Yugveer Singh
-- **Trust elements**: Modern Tech Stack, Fast Delivery, Transparent Pricing, Dedicated Support, Scalable Solutions
-- **Premium UX**: glassmorphism, particle background, custom cursor, loading screen, scroll progress, scroll-triggered animations
-- **Fully responsive** (mobile / tablet / desktop) and accessibility-minded
-- **SEO**: per-page metadata, Open Graph, Twitter cards, JSON-LD, sitemap, robots
-- **Deployment ready**: GitHub + Vercel + custom domain + Google Analytics
+Statuses shown on the site come from `src/config/dronzer.ts`. Update that file as phases complete. Never mark something done before it is verified.
 
----
+## Stack
 
-## 🛠 Tech Stack
+Next.js 15 (App Router) · React 18 · TypeScript · Tailwind CSS 3 · Geist fonts · lucide-react. All pages are statically rendered Server Components; the only client component is the navbar's mobile menu.
 
-| Layer       | Choice                              |
-| ----------- | ----------------------------------- |
-| Framework   | Next.js 15 (App Router)             |
-| Language    | TypeScript                          |
-| Styling     | Tailwind CSS + custom design tokens |
-| Animation   | Framer Motion                       |
-| UI patterns | shadcn/ui-style components + CVA    |
-| Icons       | lucide-react                        |
-| Fonts       | Geist Sans / Geist Mono             |
-| Forms       | Formspree                           |
-| Analytics   | Google Analytics 4                  |
+## Routes
 
----
+| Route | Purpose |
+| --- | --- |
+| `/` | Product site: hero, platform, research scope, workflow, risk framework, development status |
+| `/platform` | Illustrative workspace preview with honest empty states. Not live data |
+| `/terms` | Terms & risk disclaimer |
+| `/privacy-policy` | Privacy (no forms, analytics or cookies) |
+| `/icon`, `/apple-icon`, `/opengraph-image` | Generated favicon and social image (from the SVG emblem) |
+| `/sitemap.xml`, `/robots.txt` | SEO |
 
-## 🚀 Getting Started
+The old Yugen-Tech routes (`/services`, `/portfolio`, `/about`, `/contact`) intentionally return the branded 404.
 
-> Requires **Node.js 18.18+** (Node 20+ recommended).
+## Brand
 
-```powershell
-# from the project root
+- Emblem (phoenix formed around a trident): `src/components/brand/logo.tsx` exports `BrandMark` (SVG, colour or `mono`), `Wordmark` and `Logo`.
+- Design tokens: `tailwind.config.ts` (charcoal surfaces, neutral ink, one crimson accent; green/amber only for status).
+
+## Run locally
+
+```bash
 npm install
-npm run dev
+npm run dev        # http://localhost:3000
+npm run lint
+npx tsc --noEmit
+npm run build && npm start
 ```
 
-Open <http://localhost:3000> (it'll use the next free port if 3000 is taken).
+## Environment variables
 
-### Environment variables
+Only `NEXT_PUBLIC_SITE_URL` is used (optional; see `.env.example`). Secrets must never use the `NEXT_PUBLIC_` prefix.
 
-Copy `.env.example` to `.env.local` and fill in your real details:
+## Deployment
 
-```ini
-NEXT_PUBLIC_SITE_URL=https://yugen-tech.com
-NEXT_PUBLIC_WHATSAPP_NUMBER=919399371573          # digits only, incl. country code (91 = India)
-NEXT_PUBLIC_CONTACT_EMAIL=yugveeersinghbhati@gmail.com
-NEXT_PUBLIC_FORMSPREE_ID=                          # form ID from formspree.io (after /f/)
-NEXT_PUBLIC_GA_ID=                                 # e.g. G-XXXXXXXXXX
-```
+The repository is connected to the existing Vercel project through Vercel's Git integration: every push to `main` deploys to production at https://yugen-tech.vercel.app. The hostname is unchanged from the previous site; only the content and branding changed.
 
-Everything falls back to safe defaults if unset (the contact form uses a demo success state until Formspree is configured).
+## Previous website
 
----
+The original Yugen-Tech agency website is preserved in Git:
 
-## 📦 Scripts
+- branch `archive/yugen-tech-before-dronzer-2026-10-29`
+- tag `yugen-tech-pre-dronzer-2026-10-29`
 
-| Command         | Description              |
-| --------------- | ------------------------ |
-| `npm run dev`   | Start the dev server     |
-| `npm run build` | Production build         |
-| `npm run start` | Run the production build |
-| `npm run lint`  | Lint with ESLint         |
+Restore it locally with `git checkout yugen-tech-pre-dronzer-2026-10-29`.
 
----
+## Security boundaries
 
-## 📁 Project Structure
+- No API keys, broker credentials or private configuration belong in this repository or in browser code.
+- The preview has no authentication because it shows nothing sensitive. Any future private workspace needs real server-side authentication before it displays account or market data.
+- Future broker integration must run server-side with credentials in a secret manager, plus authorization, input validation, timeouts and audit logging. It must stay separate from this public site.
+- The server's IP address is deliberately not published on the site.
 
-```
-src/
-├─ app/
-│  ├─ layout.tsx              # Root layout: fonts, SEO, providers, global effects, JSON-LD
-│  ├─ page.tsx                # Home
-│  ├─ about/page.tsx          # About + founder
-│  ├─ services/page.tsx       # Detailed services + process
-│  ├─ portfolio/page.tsx      # Sample projects
-│  ├─ contact/page.tsx        # Contact + FAQ
-│  ├─ privacy-policy/page.tsx # Privacy Policy
-│  ├─ terms/page.tsx          # Terms & Conditions
-│  ├─ not-found.tsx           # Branded 404
-│  ├─ sitemap.ts / robots.ts  # SEO files
-│  └─ globals.css             # Theme, glassmorphism, animations
-├─ components/
-│  ├─ analytics.tsx           # Google Analytics 4 (only loads if GA ID set)
-│  ├─ effects/                # cursor, particles, loading screen, scroll progress, aurora
-│  ├─ layout/                 # navbar, footer, site-shell, page-header, legal-layout, whatsapp
-│  ├─ providers/              # currency-provider (India/Global detection)
-│  ├─ sections/               # hero, services, portfolio, why-choose-us, process, about,
-│  │                          #   pricing, faq, cta-band, contact
-│  └─ ui/                     # button, section-heading, counter, reveal
-├─ config/
-│  ├─ site.ts                 # Brand, founder, nav, social, integrations
-│  └─ content.ts              # All section copy/data (single source of truth)
-└─ lib/utils.ts               # cn() class merge helper
-```
+## Disclaimer
 
-### Editing content
-
-All copy lives in `src/config/content.ts` and `src/config/site.ts`. Update services, sample projects, pricing, FAQs and contact details there — no need to touch components. **As you complete real client work, add real case studies and testimonials here.**
-
----
-
-## 🔌 Setting up integrations
-
-### Contact form (Formspree)
-
-1. Create a free form at <https://formspree.io>.
-2. Copy your form ID (the part after `/f/` in the endpoint).
-3. Set `NEXT_PUBLIC_FORMSPREE_ID` in your env. Submissions now email you directly.
-
-### WhatsApp
-
-Set `NEXT_PUBLIC_WHATSAPP_NUMBER` to your number (digits only, including country code, e.g. `919399371573`). All "Book Free Consultation" buttons and the floating button open a WhatsApp chat with a pre-filled message.
-
-### Google Analytics
-
-Create a GA4 property, then set `NEXT_PUBLIC_GA_ID` (e.g. `G-XXXXXXXXXX`). Analytics only loads in production when this is set.
-
----
-
-## 🌐 Deployment (GitHub → Vercel → Custom Domain)
-
-### 1. Push to GitHub
-
-```powershell
-git init
-git add .
-git commit -m "Initial commit: Yugen-Tech website"
-git branch -M main
-git remote add origin https://github.com/<your-username>/yugen-tech.git
-git push -u origin main
-```
-
-### 2. Deploy on Vercel
-
-1. Go to <https://vercel.com/new> and import your GitHub repo.
-2. Vercel auto-detects Next.js — no config needed.
-3. Under **Environment Variables**, add the values from `.env.example`.
-4. Click **Deploy**.
-
-### 3. Connect your custom domain
-
-1. In Vercel → your project → **Settings → Domains**, add `yugen-tech.com`.
-2. At your domain registrar, point DNS to Vercel:
-   - `A` record `@` → `76.76.21.21`, **or**
-   - `CNAME` `www` → `cname.vercel-dns.com`
-3. Update `NEXT_PUBLIC_SITE_URL` to your live domain and redeploy.
-
-### Other platforms
-
-```powershell
-npm run build
-npm run start   # serves the production build
-```
-
-Works on Netlify, Render, Railway or any Node host.
-
----
-
-## ♿ Accessibility & Performance
-
-- Honors `prefers-reduced-motion` (particles, cursor and heavy animations back off).
-- Custom cursor only activates on mouse (fine-pointer) devices.
-- Semantic landmarks, labelled form fields, visible focus rings.
-- Fonts via `next/font` (Geist) to avoid layout shift.
-- Security headers set in `next.config.mjs`.
-- All pages prerender as static for fast loads.
-
----
-
-## 📝 A note on the legal pages
-
-The Privacy Policy and Terms are clear, good-faith starting templates — **not legal advice**. Have them reviewed by a professional before relying on them for compliance.
-
----
-
-## 📄 License
-
-Proprietary — © Yugen-Tech. All rights reserved.
+Dronzer AI is a research and decision-support project. It is not investment advice, not a registered adviser or broker, and not a guarantee of profitable trading. You remain responsible for your own trading decisions.

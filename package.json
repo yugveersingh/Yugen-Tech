@@ -2,7 +2,7 @@
   "name": "yugen-tech",
   "version": "1.0.0",
   "private": true,
-  "description": "Yugen-Tech — Premium software development agency website",
+  "description": "Dronzer AI: website and workspace preview for a NIFTY 50 options research project",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,17 +10,14 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.107.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "framer-motion": "^11.11.17",
     "geist": "^1.3.1",
     "lucide-react": "^0.456.0",
     "next": "^15.5.19",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwind-merge": "^2.5.5"
   },
   "devDependencies": {
     "@types/node": "^20.17.10",

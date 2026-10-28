@@ -1,40 +1,29 @@
-"use client";
-
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 /**
- * Premium button with glow/glass variants.
- * Built in the shadcn/ui style with class-variance-authority.
- *
- * Supports `asChild`: when true, the styling is merged onto the single child
- * element (e.g. a Next.js <Link>) instead of rendering a <button>. This is a
- * lightweight Slot implementation that avoids an extra dependency.
+ * Button in the shadcn/ui style. `asChild` merges the styling onto a single
+ * child (e.g. a Next.js <Link>) instead of rendering a <button>.
  */
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-electric-400 focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 active:scale-[0.98]",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors duration-200 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         primary:
-          "bg-brand-gradient text-white shadow-glow hover:shadow-glow-violet bg-[length:200%_auto] hover:bg-[position:right_center]",
+          "bg-crimson text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] hover:bg-crimson-hover active:bg-crimson",
         secondary:
-          "glass-strong text-white hover:bg-white/10 hover:border-white/20",
-        outline:
-          "border border-white/15 bg-transparent text-white hover:bg-white/5 hover:border-white/30",
-        ghost: "text-white/70 hover:text-white hover:bg-white/5",
+          "border border-line bg-surface-raised text-ink hover:border-ink-3/50 hover:bg-surface-hover",
+        ghost: "text-ink-2 hover:bg-surface-hover hover:text-ink",
       },
       size: {
-        sm: "h-9 px-4 text-xs",
-        md: "h-11 px-6",
-        lg: "h-[3.25rem] px-8 text-base",
+        sm: "h-9 px-3.5 text-[13px]",
+        md: "h-11 px-5",
+        lg: "h-12 px-6 text-[15px]",
       },
     },
-    defaultVariants: {
-      variant: "primary",
-      size: "md",
-    },
+    defaultVariants: { variant: "primary", size: "md" },
   }
 );
 
@@ -49,7 +38,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const classes = cn(buttonVariants({ variant, size, className }));
 
     if (asChild && React.isValidElement(children)) {
-      // Merge button classes onto the child element (e.g. <Link>).
       const child = children as React.ReactElement<{ className?: string }>;
       return React.cloneElement(child, {
         className: cn(classes, child.props.className),

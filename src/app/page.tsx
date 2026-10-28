@@ -1,36 +1,21 @@
 import { SiteShell } from "@/components/layout/site-shell";
-import { Hero } from "@/components/sections/hero";
-import { TrustBar } from "@/components/sections/trust-bar";
-import { Services } from "@/components/sections/services";
-import { WhyChooseUs } from "@/components/sections/why-choose-us";
-import { Portfolio } from "@/components/sections/portfolio";
-import { Process } from "@/components/sections/process";
-import { About } from "@/components/sections/about";
-import { Pricing } from "@/components/sections/pricing";
-import { FAQ } from "@/components/sections/faq";
-import { CtaBand } from "@/components/sections/cta-band";
-import { Contact } from "@/components/sections/contact";
+import { Hero } from "@/components/home/hero";
+import { PlatformOverview } from "@/components/home/platform-overview";
+import { ResearchScope } from "@/components/home/research-scope";
+import { Workflow } from "@/components/home/workflow";
+import { RiskFramework } from "@/components/home/risk-framework";
+import { DevelopmentStatus, FinalCta } from "@/components/home/development-status";
 
-/**
- * Home page.
- * Sections follow a high-conversion narrative:
- * attention → trust → capability → proof → process → founder →
- * pricing → objections → conversion.
- */
 export default function Home() {
   return (
     <SiteShell>
       <Hero />
-      <TrustBar />
-      <Services />
-      <WhyChooseUs />
-      <Portfolio limit={3} />
-      <Process />
-      <About />
-      <Pricing />
-      <FAQ />
-      <CtaBand />
-      <Contact />
+      <PlatformOverview />
+      <ResearchScope />
+      <Workflow />
+      <RiskFramework />
+      <DevelopmentStatus />
+      <FinalCta />
     </SiteShell>
   );
 }

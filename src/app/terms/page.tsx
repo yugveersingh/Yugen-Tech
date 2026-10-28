@@ -1,99 +1,49 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { LegalLayout, LegalSection } from "@/components/layout/legal-layout";
-import { siteConfig } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions",
-  description: `The terms governing the use of ${siteConfig.name}'s website and services.`,
+  title: "Terms & Risk Disclaimer",
+  description: "Terms of use and risk disclaimer for the Dronzer AI website.",
   alternates: { canonical: "/terms" },
-  robots: { index: true, follow: true },
 };
 
-/**
- * Terms & Conditions.
- * NOTE: This is a clear, good-faith starting template — not legal advice.
- * Have it reviewed by a professional before relying on it.
- */
 export default function TermsPage() {
   return (
-    <LegalLayout title="Terms & Conditions" updated="June 2026">
-      <p className="text-sm leading-relaxed text-white/60">
-        These Terms &amp; Conditions govern your use of the {siteConfig.name}{" "}
-        website and any services you engage us for. By using this site or working
-        with us, you agree to these terms.
-      </p>
-
-      <LegalSection heading="Our services">
+    <LegalLayout title="Terms & Risk Disclaimer" updated="29 October 2026">
+      <LegalSection heading="What this website is">
         <p>
-          {siteConfig.name} provides software development services including
-          websites, custom software, mobile apps, AI automation and SaaS
-          products. The specific scope, deliverables, timeline and price of any
-          project are agreed in a separate written proposal before work begins.
+          This website describes Dronzer AI, a personal research and decision-support project for
+          NIFTY 50 index options that is still in development. It is informational only. It
+          provides no accounts, no data feed, no signals and no trading functionality.
         </p>
       </LegalSection>
-
-      <LegalSection heading="Quotes & pricing">
+      <LegalSection heading="Not investment advice">
         <p>
-          Prices shown on this website are starting points for illustration.
-          Final pricing depends on your project requirements and is confirmed in
-          your proposal. Payment terms are set out in each project agreement.
+          Nothing on this website is investment, financial, legal or tax advice, or a
+          recommendation to buy or sell any security or derivative. Dronzer AI is not a registered
+          investment adviser, research analyst, broker or other regulated entity, and does not
+          claim any regulatory registration or approval.
         </p>
       </LegalSection>
-
-      <LegalSection heading="Intellectual property">
+      <LegalSection heading="Trading risk">
         <p>
-          Upon full payment, ownership of the final deliverables (code, design
-          and content created for you) transfers to you. We may showcase
-          non-confidential work in our portfolio unless agreed otherwise.
+          Trading options involves substantial risk and can result in the loss of your entire
+          capital. Any analytics Dronzer may produce in future are research aids, not guarantees of
+          profit. Market information may be unavailable, delayed or incomplete, and any analysis
+          must be read alongside your own risk controls. You remain solely responsible for your
+          trading decisions.
         </p>
       </LegalSection>
-
-      <LegalSection heading="Client responsibilities">
-        <ul className="ml-5 list-disc space-y-1.5">
-          <li>Provide timely content, feedback and access needed for the work.</li>
-          <li>Ensure you have rights to any materials you supply to us.</li>
-          <li>Make payments according to the agreed schedule.</li>
-        </ul>
-      </LegalSection>
-
-      <LegalSection heading="Revisions & support">
+      <LegalSection heading="No order execution">
         <p>
-          Each project includes a defined number of revisions and a post-launch
-          support window as stated in your proposal. Additional work beyond the
-          agreed scope may be quoted separately.
+          This website does not connect to any broker and cannot place, modify or cancel orders.
+          The platform preview is illustrative only and does not display live market data.
         </p>
       </LegalSection>
-
-      <LegalSection heading="Limitation of liability">
+      <LegalSection heading="No warranty">
         <p>
-          We deliver our services with reasonable care and skill. To the extent
-          permitted by law, {siteConfig.name} is not liable for indirect or
-          consequential losses arising from the use of our website or services.
-        </p>
-      </LegalSection>
-
-      <LegalSection heading="Changes to these terms">
-        <p>
-          We may update these terms from time to time. Continued use of the site
-          after changes are posted constitutes acceptance of the updated terms.
-        </p>
-      </LegalSection>
-
-      <LegalSection heading="Contact">
-        <p>
-          Questions about these terms? Reach us at{" "}
-          <a
-            href={`mailto:${siteConfig.email}`}
-            className="text-electric-400 hover:underline"
-          >
-            {siteConfig.email}
-          </a>{" "}
-          or via our{" "}
-          <Link href="/contact" className="text-electric-400 hover:underline">
-            contact page
-          </Link>
-          .
+          The website is provided as is, without warranties of any kind. Descriptions of planned
+          features may change or may never be delivered.
         </p>
       </LegalSection>
     </LegalLayout>

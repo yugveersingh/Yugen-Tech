@@ -1,5 +1,4 @@
 import { SiteShell } from "@/components/layout/site-shell";
-import { PageHeader } from "@/components/layout/page-header";
 
 interface LegalLayoutProps {
   title: string;
@@ -7,40 +6,26 @@ interface LegalLayoutProps {
   children: React.ReactNode;
 }
 
-/**
- * Shared layout for legal pages (Privacy Policy, Terms).
- * Provides a consistent header and a readable prose container.
- */
+/** Shared layout for the legal pages. */
 export function LegalLayout({ title, updated, children }: LegalLayoutProps) {
   return (
     <SiteShell>
-      <PageHeader eyebrow="Legal" title={title} />
-      <section className="px-4 pb-24">
-        <div className="container max-w-3xl">
-          <p className="mb-10 text-sm text-white/40">Last updated: {updated}</p>
-          <div className="legal-prose flex flex-col gap-8">{children}</div>
-        </div>
-      </section>
+      <article className="container max-w-3xl py-20 sm:py-28">
+        <p className="label">Legal</p>
+        <h1 className="mt-4 text-4xl font-semibold tracking-tight text-ink sm:text-5xl">{title}</h1>
+        <p className="mt-4 text-sm text-ink-3">Last updated: {updated}</p>
+        <div className="mt-12 flex flex-col gap-10">{children}</div>
+      </article>
     </SiteShell>
   );
 }
 
 /** A titled legal section block. */
-export function LegalSection({
-  heading,
-  children,
-}: {
-  heading: string;
-  children: React.ReactNode;
-}) {
+export function LegalSection({ heading, children }: { heading: string; children: React.ReactNode }) {
   return (
-    <div className="flex flex-col gap-3">
-      <h2 className="text-xl font-semibold tracking-tight text-white">
-        {heading}
-      </h2>
-      <div className="flex flex-col gap-3 text-sm leading-relaxed text-white/60">
-        {children}
-      </div>
-    </div>
+    <section className="flex flex-col gap-3 border-t border-line-subtle pt-8">
+      <h2 className="text-lg font-semibold tracking-tight text-ink">{heading}</h2>
+      <div className="flex flex-col gap-3 text-[15px] leading-relaxed text-ink-2">{children}</div>
+    </section>
   );
 }
