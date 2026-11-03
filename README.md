@@ -57,7 +57,7 @@ Only `NEXT_PUBLIC_SITE_URL` is used (optional; see `.env.example`). Secrets must
 
 ## Deployment
 
-The repository is connected to the existing Vercel project through Vercel's Git integration: every push to `main` deploys to production at https://yugen-tech.vercel.app. The hostname is unchanged from the previous site; only the content and branding changed.
+The repository is connected to the existing Vercel project through Vercel's Git integration: every push to `main` deploys to production at https://dronzerr.vercel.app. The previous hostname, `yugen-tech.vercel.app`, is no longer used.
 
 ## Previous website
 

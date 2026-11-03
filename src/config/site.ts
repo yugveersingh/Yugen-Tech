@@ -7,7 +7,7 @@ export const siteConfig = {
   tagline: "Market Intelligence. Disciplined Decisions.",
   description:
     "Dronzer AI is a research-first trading intelligence project for NIFTY 50 index options, built to turn market data, quantitative analysis and risk checks into a structured, human-approved decision workflow. In development. No live trading.",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://yugen-tech.vercel.app",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://dronzerr.vercel.app",
   keywords: [
     "Dronzer AI",
     "NIFTY 50 options research",
